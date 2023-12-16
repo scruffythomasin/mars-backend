@@ -4,11 +4,16 @@ from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-lxkwtaj1yp2%n+-+-*a&8^2$y)5@+0z0b&e&q3o_km6$*i!ckr'
+SECRET_KEY = config("SECRET_KEY", default="django-in", cast=str)
 
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = []
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost',
+]
 
 
 # Application definition
@@ -25,6 +30,7 @@ INSTALLED_APPS = [
     
     # Local Apps
     'apps.users',
+    'apps.products',
     ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -66,11 +72,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mars',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': config('DB_NAME', default='', cast=str),
+        'USER': config('DB_USER', default='', cast=str),
+        'PASSWORD': config('DB_PASSWORD', default='', cast=str),
+        'HOST': config('DB_HOST', default='', cast=str),
+        "PORT": config("DB_PORT", default="", cast=str),
     }
 }
 
