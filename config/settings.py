@@ -76,7 +76,7 @@ DATABASES = {
         'USER': config('DB_USER', default='', cast=str),
         'PASSWORD': config('DB_PASSWORD', default='', cast=str),
         'HOST': config('DB_HOST', default='', cast=str),
-        "PORT": config("DB_PORT", default="", cast=str),
+        "PORT": config("DB_PORT", default='', cast=str),
     }
 }
 
@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
