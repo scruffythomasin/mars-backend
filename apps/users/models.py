@@ -10,6 +10,7 @@ class User(AbstractUser):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='my_profile')
     basket = models.ManyToManyField(Product, blank=True, verbose_name='Корзина', related_name='my_basket')
+    bookmarks = models.ManyToManyField(Product, blank=True, verbose_name='Закладки', related_name='my_bookmarks')
 
     class Meta:
         verbose_name = 'Профиль'
@@ -29,7 +30,6 @@ class UserProductRelation(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    like = models.BooleanField(default=False)
     rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
 
     class Meta:
